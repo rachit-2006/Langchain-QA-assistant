@@ -51,34 +51,15 @@ if user_input:
             model="moonshotai/kimi-k2-instruct",
     )     
     
-
-    # 2. Create prompt using PromptTemplate or ChatPromptTemplate
-    # TODO: Write logic to construct the appropriate prompt
-# created a template that contains chat history using chat prompt template #
-
-    
     chat_template=ChatPromptTemplate.from_messages([
         MessagesPlaceholder(variable_name='chat_history'),
         ('human','{query}')
     ])
     prompt=chat_template.invoke({'chat_history':st.session_state.chat_history,'query':user_input})
 
-    # 3. Maintain previous chat history (optional: use MessagesPlaceholder equivalent)
-    # TODO: Implement chat memory logic
-
-    # st.session_state.chat_history is a list which stores our chat history #
-
-
-    # 4. Parse the output
-    # TODO: Use output parser to clean and display 
-    
-
-
-    # 5. Display the response
-    # TODO: Show the final answer to the user
     response=model.invoke(prompt)
     st.session_state.chat_history.append(AIMessage(content=response.content))
-    #st.write(response.content)
+    #st.write(response.content)g
     for message in st.session_state.chat_history:
         st.write(message.content)
     #st.write(st.session_state.chat_history)
