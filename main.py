@@ -30,12 +30,12 @@ user_input = st.text_input("Ask a question:")
 st.write("Hey, How can I help you?")
 if user_input:
     # === BACKEND LOGIC STARTS HERE ===
-    #st.session_state.chat_history.append(AIMessage("Hey, How can I help you?"))
+    
     
     st.session_state.chat_history.append(HumanMessage(content=user_input))
 
-    # 1. Load selected model
-    # TODO: Write logic to load the selected model dynamically based on dropdown
+# Load selected model
+
 
     
     if(model_name=="Groq-LLaMA2"):
@@ -50,6 +50,7 @@ if user_input:
         model=ChatGroq(
             model="moonshotai/kimi-k2-instruct",
     )     
+        
     
     chat_template=ChatPromptTemplate.from_messages([
         MessagesPlaceholder(variable_name='chat_history'),
